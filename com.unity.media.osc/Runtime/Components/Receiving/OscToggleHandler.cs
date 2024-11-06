@@ -7,7 +7,7 @@ namespace StageLab.Core
     /// <summary>
     /// The base class to use for components that apply data from received OSC Messages to the Unity Scene.
     /// </summary>
-    [ExecuteAlways]
+    [AddComponentMenu("OSC/OSC Toggle Handler")]
     public class OscToggleHandler : MonoBehaviour
     {
         [SerializeField, Tooltip("The OSC Receiver to handle messages from.")]

@@ -89,3 +89,7 @@ crashlytics-build.properties
 
 # Mac file setting
 .DS_Store
+TestProject/Library
+TestProject/Logs
+TestProject/Temp
+TestProject/UserSettings

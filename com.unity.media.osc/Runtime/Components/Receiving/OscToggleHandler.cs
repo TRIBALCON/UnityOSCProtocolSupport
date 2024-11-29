@@ -1,8 +1,6 @@
-using System;
-using Unity.Media.Osc;
 using UnityEngine;
 
-namespace StageLab.Core
+namespace Unity.Media.Osc
 {
     /// <summary>
     /// The base class to use for components that apply data from received OSC Messages to the Unity Scene.

@@ -2,20 +2,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Iridescent.TimeMachine;
-using Unity.Media.Osc;
 using UnityEngine;
 using UnityEngine.Timeline;
-using StageLab.Core;
 
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace StageLab.Core
+namespace Unity.Media.Osc
 {
     /// <summary>
     /// The base class to use for components that apply data from received OSC Messages to the Unity Scene.

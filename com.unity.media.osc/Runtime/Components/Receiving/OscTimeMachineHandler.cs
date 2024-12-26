@@ -6,7 +6,8 @@ using System.Reflection;
 using Iridescent.TimeMachine;
 using UnityEngine;
 using UnityEngine.Timeline;
-
+using System.Text;
+using System.Runtime.InteropServices;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -199,12 +200,16 @@ namespace Unity.Media.Osc
             RegisterCallbacks();
         }
 
-        public void OnMoveSectionReceived(OscMessage message)
+        public unsafe void OnMoveSectionReceived(OscMessage message)
         {
-            var address = message.GetAddressPattern().ToString();
+            var address = message.GetAddressPattern();
+            var addresses = stackalloc char[address.Length];
+            var addressSpan = new ReadOnlySpan<char>(addresses, address.Length);
+            Encoding.ASCII.GetChars(address.Pointer, address.Length, addresses, address.Length);
+            
             foreach (var timeMachineOscEvent in timeMachineOscMoveSectionEvents)
             {
-                if(!string.Equals(address, timeMachineOscEvent.oscAddress))
+                if(!timeMachineOscEvent.oscAddress.AsSpan().SequenceEqual(addressSpan))
                     continue;
 
                 var sectionName = timeMachineOscEvent.sectionName;

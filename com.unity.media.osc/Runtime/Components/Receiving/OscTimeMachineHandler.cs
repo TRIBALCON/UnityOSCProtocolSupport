@@ -241,7 +241,7 @@ namespace Unity.Media.Osc
 
         #if UNITY_EDITOR
         [CustomEditor(typeof(OscTimeMachineHandler))]
-        public class OscTImeMachineHandlerEditor: Editor
+        public class OscTimeMachineHandlerEditor: Editor
         {
             public override void OnInspectorGUI()
             {
@@ -266,6 +266,7 @@ namespace Unity.Media.Osc
                     EditorGUILayout.Space();
                     if (GUILayout.Button("Initialize OSC Events", GUILayout.MaxWidth(200),GUILayout.Height(28)))
                     {
+                        Undo.RecordObject(OscHandler, "Init TimeMachine Event");
                         OscHandler.Init();
                     }
                     EditorGUILayout.Space();
@@ -280,11 +281,7 @@ namespace Unity.Media.Osc
                 
                 EditorGUI.EndDisabledGroup();
 
-                if (EditorGUI.EndChangeCheck())
-                {
-                    Undo.RecordObject(target, "Modify OscTimeMachineHandler");
-                    serializedObject.ApplyModifiedProperties();
-                }
+                serializedObject.ApplyModifiedProperties();
             }
         }
         #endif
